@@ -66,7 +66,7 @@ Meteor.methods({
       _id,
       // userId: this.userId
     }, {
-      $set: {d1, d2, u1, u2, d1name, d1name, u1name, u2name}
+      $set: {d1, d2, u1, u2, d1name, d2name, u1name, u2name}
     }, (err) => {
       console.log('Is there an error?', err);
     });

@@ -14,6 +14,7 @@ import Login from '../ui/Login';
 import ClientHome from '../ui/ClientHome';
 import ClientEditor from '../ui/ClientEditor';
 import AddInvoice from '../ui/AddInvoice';
+import ViewInvoice from '../ui/ViewInvoice';
 
 // Database imports
 import {Clients} from '../api/clients';
@@ -56,6 +57,7 @@ export const routes = (
     <Route path="admin/:clientId" component={ClientHome} onEnter={onEnterPrivatePage}  />
     <Route path="admin/:clientId/edit" component={ClientEditor} onEnter={onEnterPrivatePage}  />
     <Route path="admin/:clientId/addinvoice" component={AddInvoice} onEnter={onEnterPrivatePage}  />
+    <Route path="admin/:clientId/viewinvoice" component={ViewInvoice} onEnter={onEnterPrivatePage}  />
     <Route path="admin" component={Client} onEnter={onEnterPrivatePage} />
     <Route path="admin/bill" component={BillForm} />
     <Route path="*" component={NotFound} />

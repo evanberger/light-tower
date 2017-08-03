@@ -4,7 +4,10 @@ import {Clients} from '../api/clients';
 import {createContainer} from 'meteor/react-meteor-data';
 import AdminTitleBar from './AdminTitleBar';
 import {browserHistory, Link} from 'react-router';
-// import ClientEditor from './ClientEditor';
+
+function commas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
  class ClientHome extends React.Component {
    constructor(props) {
@@ -17,6 +20,8 @@ import {browserHistory, Link} from 'react-router';
      console.log("Post-cDM: " + this.props.params);
      console.log("Post-cDM: " + this.props.client.peakLoad);
      console.log("Post-cDM: " + this.props.params.clientId);
+     console.log("Post-cDM: " + this.props.params.d1);
+     console.log("Post-cDM: " + this.props.params.d1name);
      const client = this.props.client;
      let peakLoad = this.props.client.peakLoad;
      let acctOwner = this.props.client.acctOwner;
@@ -41,6 +46,9 @@ import {browserHistory, Link} from 'react-router';
     let city = 'Wilmette';
     let USstate = 'IL';
     let zip = '60091';
+    const {u1, u2, d1, d2, u1name, u2name, d1name, d2name} = this.props.params;
+    console.log("Numbers: ", u1, d1, u1name, d1name);
+    console.log("Params:", this.props.params.d1, this.props.params.d1name);
     const client = this.props.client;
     const addInvoiceRoute = '/admin/' + this.props.params.clientId + '/addInvoice';
     // let peakLoad = this.props.client.peakLoad;
@@ -193,8 +201,9 @@ import {browserHistory, Link} from 'react-router';
 };
 
 export default createContainer((props) => {
-  const { clientName, peakLoad, clientId } = props.params;
-  Meteor.subscribe('clients');
+  const { clientName, peakLoad, clientId, acctOwner,
+    d1, d2, u1, u2, u1name, u2name, d1name, d2name } = props.params;
+  Meteor.subscribe('clientsPub');
 
   return {client: Clients.findOne(clientId)};
 }, ClientHome);
